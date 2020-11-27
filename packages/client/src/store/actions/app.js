@@ -30,14 +30,14 @@ const createRoom = (name) => ({
   },
 })
 
-const joinRoom = (name, room) => ({
+const joinRoom = (name, roomId) => ({
   type: API,
   api: {
     method: 'POST',
     url: '/session/join',
     data: {
       name,
-      room,
+      roomId,
     },
     onSuccess: (data) => store.dispatch({
       type: appTypes.setData,

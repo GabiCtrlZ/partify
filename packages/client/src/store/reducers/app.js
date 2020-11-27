@@ -22,13 +22,13 @@ export default handleActions({
       const {
         name,
         role,
-        room,
+        roomId,
       } = decoded
 
       return state
         .set('songs', songs)
         .set('name', name)
-        .set('room', room)
+        .set('room', roomId)
         .set('role', role)
     }
     catch (e) {
