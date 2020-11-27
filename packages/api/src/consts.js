@@ -14,6 +14,8 @@ const {
   SECRET = 'defaultSecret',
   DISABLE_COOKIE_SECURITY = false,
   CLIENT_BUILD_PATH,
+  API_CALLBACK,
+  CLIENT_CALLBACK,
 } = process.env
 
 const MONGO_OPTIONS = {
@@ -65,4 +67,6 @@ module.exports = {
     ...MONGO_AUTH_OPTIONS,
   },
   SERVICE_NAME: `${packagejson.name}:${packagejson.version}`,
+  API_CALLBACK,
+  CLIENT_CALLBACK,
 }

@@ -1,42 +1,40 @@
 const Joi = require('@hapi/joi')
 const withSchema = require('../../lib/with-schema')
-
-const { spotifyActions } = require('../../lib/init-spotify-api')
+const { searchActions } = require('../../../spotify-api/actions')
 
 const schema = Joi.object().keys({
-  songUri: Joi.string().required(),
+  searchVal: Joi.string().required(),
 })
 
 module.exports = withSchema(schema, 'body')(async (req, res) => {
   const {
     logger,
-    body,
     session,
+    body,
   } = req
+
+  const {
+    search,
+  } = searchActions
 
   try {
     const {
-      token,
-      playlistId,
-      roomId,
-    } = session
-
-    const {
-      songUri,
+      searchVal,
     } = body
 
     const {
-      playlistActions: {
-        removeFromPlaylist,
-      },
-    } = spotifyActions
+      token,
+    } = session
 
-    await removeFromPlaylist(playlistId, token, songUri)
+    logger.info(`searching for song with searchVal: ${searchVal}`)
 
-    logger.info('removed song uri from session', { songUri, roomId })
+    const songs = await search(token, searchVal)
 
     return res.json({
       success: true,
+      data: {
+        songs,
+      },
     })
   } catch (e) {
     logger.info(`error with route ${req.url}`, { message: e.toString() })

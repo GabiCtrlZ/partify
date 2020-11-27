@@ -1,31 +1,41 @@
 const {
-  Session,
-} = require('../../models')
+  spotifyActions: { playlistActions },
+} = require('../../lib/init-spotify-api')
 
 module.exports = async (req, res) => {
-  const { logger, user } = req
-  try {
-    const { room } = user
-    logger.info('getting room data') // get all songs and stuff
+  const {
+    logger,
+    session,
+  } = req
 
-    const session = await Session.findOne({ isAlve: true, room }).lean().exec()
-    // use session key to get all playlist songs
-    logger.info(session)
+  const {
+    playlistId,
+    expiresIn,
+    token,
+  } = session
+
+  const {
+    getTracksFromPlaylist,
+  } = playlistActions
+
+  try {
+    const songs = await getTracksFromPlaylist(
+      playlistId,
+      expiresIn,
+      token,
+      logger,
+    )
 
     return res.json({
       success: true,
       data: {
-        songs: [{
-          id: 1,
-          name: 'savior',
-          album: 'appeal to reason',
-          artist: 'rise against',
-          img: 'https://raw.githubusercontent.com/GabiCtrlZ/Currency/master/packages/readme-pics/search-tab.jpeg',
-        }],
+        songs,
       },
     })
   } catch (e) {
-    logger.info(`error with route ${req.url}`, { message: e.toString() })
+    logger.info(`error with route ${req.url}`, {
+      message: e.toString(),
+    })
 
     return res.status(500).json({
       success: false,

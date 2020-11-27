@@ -1,7 +1,14 @@
 const { model, Schema } = require('mongoose')
 
 const sessionSchema = new Schema({
-  room: String,
+  roomId: String,
+  token: String,
+  refreshToken: String,
+  expiresIn: Date,
+  spotifyId: String,
+  playlistId: String,
+  hostName: String,
+  hostImage: String,
   isAlive: Boolean,
   expireAt: {
     type: Date,

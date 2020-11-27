@@ -1,0 +1,13 @@
+const {
+  CLIENT_ID,
+  CLIENT_SECRET,
+  SPOTIFY_ACCOUNTS_API,
+  SPOTIFY_ACTIONS_API,
+} = process.env
+
+module.exports = {
+  CLIENT_ID,
+  CLIENT_SECRET,
+  SPOTIFY_ACCOUNTS_API,
+  SPOTIFY_ACTIONS_API,
+}
