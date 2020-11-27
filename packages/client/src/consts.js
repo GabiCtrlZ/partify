@@ -1,6 +1,7 @@
 const {
   REACT_APP_DEVELOPMENT: NODE_ENV,
   REACT_APP_COOKIE_NAME: COOKIE_NAME,
+  REACT_APP_AUTH_URL: AUTH_URL,
 } = process.env
 
 const LANGS = {
@@ -57,6 +58,7 @@ export {
   LANGS,
   COLORS,
   NODE_ENV,
+  AUTH_URL,
   COOKIE_NAME,
   GRAPH_RATIOS,
   MAIN_TABS,

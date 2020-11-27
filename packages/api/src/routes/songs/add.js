@@ -15,7 +15,6 @@ module.exports = async (req, res) => {
 
   const {
     playlistId,
-    expiresIn,
     token,
     roomId,
   } = session
@@ -25,7 +24,9 @@ module.exports = async (req, res) => {
   } = playlistActions
 
   try {
-    await addToPlaylist(playlistId, expiresIn, token, songUri)
+    logger.info('adding song to room id', { songUri, roomId })
+
+    await addToPlaylist(playlistId, token, songUri)
 
     logger.info('added song uri to session', { songUri, roomId })
 

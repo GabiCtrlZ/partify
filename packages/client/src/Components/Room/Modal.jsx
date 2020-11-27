@@ -7,6 +7,8 @@ import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
 import Slide from '@material-ui/core/Slide'
 import { Button, Container } from '@material-ui/core'
+import { connect } from 'react-redux'
+import { addSong, removeSong } from '../../store/actions/app'
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -47,10 +49,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Transition = React.forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props} />)
 
-export default function Modal(props) {
+function Modal(props) {
   const classes = useStyles()
   const {
-    open, handleClose, songData, action,
+    open, handleClose, songData, action, dispatch,
   } = props
 
   const {
@@ -61,8 +63,8 @@ export default function Modal(props) {
   } = songData
 
   const onClick = () => {
-    if (action === 'add') return console.log('adding', uri) // TODO connect
-    console.log('removing', uri) // TODO connect
+    if (action === 'add') return dispatch(addSong(uri, songData, handleClose)) // TODO connect
+    dispatch(removeSong(uri, handleClose))
   }
 
   return (
@@ -93,7 +95,7 @@ export default function Modal(props) {
         </div>
         <Button
           variant="contained"
-          color="primary"
+          color={action === 'add' ? 'primary' : 'error'}
           className={classes.button}
           onClick={onClick}
         >
@@ -104,3 +106,5 @@ export default function Modal(props) {
     </Dialog>
   )
 }
+
+export default connect()(Modal)

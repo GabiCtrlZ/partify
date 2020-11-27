@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 import React, { useState } from 'react'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
@@ -10,6 +11,8 @@ import Container from '@material-ui/core/Container'
 import { connect } from 'react-redux'
 
 import { createRoom } from '../../store/actions/app'
+import PartifyButton from '../Common/PartifyButton'
+import { AUTH_URL } from '../../consts'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -45,46 +48,62 @@ const useStyles = makeStyles((theme) => ({
 
 function Create(props) {
   const classes = useStyles()
-  const { handleClose, dispatch } = props
+  const { handleClose, roomId, dispatch } = props
   const [name, setName] = useState('')
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Create Room
-        </Typography>
-        <TextField
-          className={classes.textField}
-          onChange={({ target: { value } }) => setName(value)}
-          variant="outlined"
-          margin="normal"
-          required
-          fullWidth
-          placeholder="Name"
-          id="name"
-          name="name"
-          autoComplete="name"
-          autoFocus
-        />
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          color="primary"
-          className={classes.submit}
-          onClick={() => {
-            dispatch(createRoom(name))
-            handleClose()
-          }}
-        >
-          Create
-        </Button>
-      </div>
+      {!!roomId && (
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Create Room
+          </Typography>
+          <TextField
+            className={classes.textField}
+            onChange={({ target: { value } }) => setName(value)}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            placeholder="Name"
+            id="name"
+            name="name"
+            autoComplete="name"
+            autoFocus
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={() => {
+              dispatch(createRoom(name, roomId))
+              handleClose()
+            }}
+          >
+            Create
+          </Button>
+        </div>
+      )}
+      {!roomId && (
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5" style={{ marginBottom: 36 }}>
+            Create Room
+          </Typography>
+          <PartifyButton
+            label="Create with spofity"
+            onClick={() => window.location = AUTH_URL}
+          />
+        </div>
+      )}
     </Container>
   )
 }
