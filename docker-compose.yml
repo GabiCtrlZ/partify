@@ -8,6 +8,14 @@ services:
     networks: 
       - default
 
+  mongodb:
+    container_name: mongodb
+    image: 'bitnami/mongodb:latest'
+    environment: 
+      - MONGODB_ROOT_PASSWORD=${MONGODB_ROOT_PASSWORD}
+    networks:
+      - default
+
   nginx:
     container_name: nginx
     image: 'docker.io/bitnami/nginx:1.19-debian-10'
