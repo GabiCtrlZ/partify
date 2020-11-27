@@ -1,0 +1,9 @@
+node_modules
+.env
+.idea
+.DS_store
+newrelic_agent.log
+.sublime-project
+.sublimelinterrc
+.serverless
+.vscode

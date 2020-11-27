@@ -1,0 +1,24 @@
+{
+  "name": "partify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint-api": "cd ./packages/api && npm run lint",
+    "lint": "concurrently \"npm run lint-api\"",
+    "start-api": "cd ./packages/api && npm run dev",
+    "start-api-server": "cd ./packages/api && npm start",
+    "start-client": "cd ./packages/client && npm start",
+    "start": "cd ./packages/api && npm start",
+    "install-api": "cd ./packages/api && npm install",
+    "install-client": "cd ./packages/client && npm install",
+    "install-all": "concurrently \"npm run install-client\" \"npm run install-api\"",
+    "build-client": "cd ./packages/client && npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "husky": "^4.2.3"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "currency-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js | pino-pretty -i hostname,pid -t",
+    "lint": "./node_modules/.bin/eslint . --ext .js",
+    "lint-fix": "./node_modules/.bin/eslint --fix . --ext .js",
+    "lint-fix-dry": "./node_modules/.bin/eslint --fix-dry-run . --ext .js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "axios": "^0.20.0",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.9.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "express": "^4.17.1",
+    "express-list-endpoints": "^5.0.0",
+    "helmet": "^4.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.20",
+    "log4js": "^6.3.0",
+    "mongoose": "^5.10.5",
+    "pino": "^6.6.0",
+    "pino-pretty": "^4.2.1"
+  }
+}

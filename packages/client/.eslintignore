@@ -1,0 +1,6 @@
+src/index.js
+/build/
+/node_modules/
+/public/
+/src/stories/
+/src/assets/

@@ -1,0 +1,15 @@
+packages/api/node_modules
+packages/database-models/node_modules
+packages/client/node_modules
+packages/database-models/.env
+packages/client/.env
+node_modules
+npm-debug.log
+Dockerfile*
+docker-compose*
+.dockerignore
+.git
+.gitignore
+README.md
+LICENSE
+.vscode

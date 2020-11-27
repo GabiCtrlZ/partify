@@ -1,0 +1,32 @@
+version: '3.7'
+services: 
+  partify:
+    container_name: partify
+    image: gabictrlz/partify
+    ports:
+      - 1337:3007
+    networks: 
+      - default
+
+  nginx:
+    container_name: nginx
+    image: 'docker.io/bitnami/nginx:1.19-debian-10'
+    depends_on:
+      - partify
+    networks: 
+      - default
+    ports:
+      - 80:8080
+      - 443:8080
+    volumes:
+      - ${PATH_NGINX_CONF}:/opt/bitnami/nginx/conf/server_blocks/my_server_block.conf:ro
+
+volumes:
+  mongodb_data:
+    driver: local
+
+networks: 
+  default:
+    external: 
+      name: relation_default
+    
