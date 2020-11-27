@@ -47,13 +47,6 @@ module.exports = ({
 
       logger.info(`Got success response from spotify api token with response { access_token: ${access_token}, refresh_token: ${refresh_token}, expires_in: ${expires_in} }`)
 
-      setupNewActiveUser(
-        roomId,
-        access_token,
-        refresh_token,
-        new Date(new Date().getTime() + expires_in * 1000),
-      )
-
       logger.info('sending init user')
 
       const {
