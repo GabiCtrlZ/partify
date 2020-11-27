@@ -3,21 +3,20 @@ const axios = require('axios').default
 const { SPOTIFY_ACTIONS_API } = require('../../consts')
 const { bearer } = require('../../lib/getAuthHeader')
 
-module.exports = async (
-  { activeUsers, initActiveUser },
-  id,
-) => {
+module.exports = async (token, logger) => {
   const { data } = await axios({
     url: `${SPOTIFY_ACTIONS_API}/me`,
     method: 'GET',
-    headers: bearer(id, activeUsers),
+    headers: bearer(token),
   })
 
-  const {
-    display_name,
-    images: { url: image },
-    id: spotifyId,
-  } = data
+  const { display_name, images, id: spotifyId } = data
 
-  initActiveUser(id, spotifyId, display_name, image)
+  logger.info(`Got success in init user with { display_name: ${display_name}, image: ${images[0].url}, spotifyId: ${spotifyId} }`)
+
+  return {
+    spotifyId,
+    hostImage: images[0].url,
+    hostName: display_name,
+  }
 }

@@ -31,6 +31,7 @@
     "mongoose": "^5.10.5",
     "pino": "^6.6.0",
     "pino-pretty": "^4.2.1",
+    "querystring": "^0.2.0",
     "uuid": "^8.3.1"
   }
 }

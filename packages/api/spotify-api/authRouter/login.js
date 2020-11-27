@@ -12,7 +12,7 @@ module.exports = ({ scopes, apiCallback }) => (
   logger.info(`got login request redirecting to spotify authorize with clientId: ${CLIENT_ID}, scopes: ${scopes}, apiCallback: ${apiCallback}, state: ${state}`)
 
   res.redirect(
-    `${SPOTIFY_ACCOUNTS_API}/authorize?response_type=code&client_id=clientId${
+    `${SPOTIFY_ACCOUNTS_API}/authorize?response_type=code&client_id=${CLIENT_ID}${
       scopes
         ? `&scope=${encodeURIComponent(scopes.join(' '))}`
         : ''

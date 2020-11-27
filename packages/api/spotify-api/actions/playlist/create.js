@@ -1,31 +1,32 @@
 const axios = require('axios').default
 const { SPOTIFY_ACTIONS_API } = require('../../consts')
 const { bearer } = require('../../lib/getAuthHeader')
-const refreshAuthToken = require('../../lib/refreshAuthToken')
 
 module.exports = async (
-  { activeUsers, setKeyInActiveUser },
-  id,
+  roomId,
+  token,
+  spotifyId,
+  logger,
 ) => {
-  const { spotifyId, expiresIn } = activeUsers[id]
+  logger.info('Creating new playlist')
 
-  if (!expiresIn > new Date()) {
-    await refreshAuthToken(activeUsers, id)
-  }
+  logger.info(`sending requset to spotify api with { spotifyId: ${spotifyId} }`)
 
   const { data } = await axios({
     url: `${SPOTIFY_ACTIONS_API}/users/${spotifyId}/playlists`,
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      ...bearer(id, activeUsers),
+      ...bearer(token),
     },
     data: {
-      name: `Partify ${id.substring(0, 3)}`,
+      name: `Partify ${roomId.substring(0, 4)}`,
     },
   })
 
   const { id: playlistId } = data
 
-  setKeyInActiveUser(id, 'playlistId', playlistId)
+  logger.info(`Got success from spotify api with { playlistId: ${playlistId} }`)
+
+  return playlistId
 }

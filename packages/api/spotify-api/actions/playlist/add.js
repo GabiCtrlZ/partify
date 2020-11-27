@@ -3,11 +3,14 @@ const { SPOTIFY_ACTIONS_API } = require('../../consts')
 const { bearer } = require('../../lib/getAuthHeader')
 const refreshAuthToken = require('../../lib/refreshAuthToken')
 
-module.exports = async ({ activeUsers }, id, songUri) => {
-  const { playlistId, expiresIn } = activeUsers[id]
-
+module.exports = async (
+  playlistId,
+  expiresIn,
+  token,
+  songUri,
+) => {
   if (!expiresIn > new Date()) {
-    await refreshAuthToken(activeUsers, id)
+    await refreshAuthToken()
   }
 
   await axios({
@@ -15,7 +18,7 @@ module.exports = async ({ activeUsers }, id, songUri) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      ...bearer(id, activeUsers),
+      ...bearer(token),
     },
     data: {
       uris: [songUri],

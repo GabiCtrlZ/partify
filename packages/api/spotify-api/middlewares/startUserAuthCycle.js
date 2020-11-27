@@ -3,14 +3,14 @@ const { v4 } = require('uuid')
 module.exports = ({ startUserAuthCycle }) => (
   req,
   res,
-  next
+  next,
 ) => {
   const { logger } = req
-  const newUserId = v4()
+  const newRoomId = v4().split('-')[0]
 
-  logger.info(`New user in login route got id ${newUserId}`)
+  logger.info(`New user in login route got id ${newRoomId}`)
 
-  req.state = newUserId
-  startUserAuthCycle(newUserId)
+  req.state = newRoomId
+  startUserAuthCycle(newRoomId)
   next()
 }

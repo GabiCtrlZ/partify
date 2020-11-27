@@ -1,10 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 class Credentials {
-  constructor(
-    scopes,
-    apiCallback,
-    clientCallback,
-  ) {
+  constructor(scopes, apiCallback, clientCallback) {
     this._scopes = scopes || []
     this._apiCallback = apiCallback || '/callback'
     this._clientCallback = clientCallback || '/'
@@ -32,19 +28,24 @@ class Credentials {
     return this._usersInAuthCycle
   }
 
-  startUserAuthCycle(id) {
+  startUserAuthCycle = (id) => {
     this._usersInAuthCycle[id] = true
   }
 
-  stopUserAuthCycle(id) {
+  stopUserAuthCycle = (id) => {
     delete this._usersInAuthCycle[id]
   }
 
-  isIdInAuthCycle(id) {
+  isIdInAuthCycle = (id) => {
     return this._usersInAuthCycle[id]
   }
 
-  setupNewActiveUser(id, token, refreshToken, expiresIn) {
+  setupNewActiveUser = (
+    id,
+    token,
+    refreshToken,
+    expiresIn
+  ) => {
     this._activeUsers[id] = {
       token,
       refreshToken,
@@ -52,7 +53,7 @@ class Credentials {
     }
   }
 
-  initActiveUser(id, spotifyId, name, image) {
+  initActiveUser = (id, spotifyId, name, image) => {
     this._activeUsers[id] = {
       ...this._activeUsers[id],
       spotifyId,
@@ -61,7 +62,7 @@ class Credentials {
     }
   }
 
-  setKeyInActiveUser(id, key, value) {
+  setKeyInActiveUser = (id, key, value) => {
     this._activeUsers[id][key] = value
   }
 }

@@ -4,7 +4,7 @@ const withSchema = require('../lib/with-schema')
 
 const schema = Joi.object().keys({
   name: Joi.string().required(),
-  room: Joi.string().required(),
+  roomId: Joi.string().required(),
 })
 
 module.exports = withSchema(schema, 'body')(async (req, res, next) => {
@@ -14,14 +14,14 @@ module.exports = withSchema(schema, 'body')(async (req, res, next) => {
   } = req
 
   try {
-    const { name, room } = body
+    const { name, roomId } = body
     logger.info('got the following data', body)
 
-    logger.info(`querying database for room ${room}`) // need to query db for live session with room id
+    logger.info(`querying database for room ${roomId}`) // need to query db for live session with room id
 
     req.user = {
       name,
-      room,
+      roomId,
       role: 'user',
     }
 

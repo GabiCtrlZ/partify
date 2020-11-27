@@ -4,6 +4,7 @@ const withSchema = require('../lib/with-schema')
 
 const schema = Joi.object().keys({
   name: Joi.string().required(),
+  roomId: Joi.string().required(),
 })
 
 module.exports = withSchema(schema, 'body')(async (req, res, next) => {
@@ -13,15 +14,14 @@ module.exports = withSchema(schema, 'body')(async (req, res, next) => {
   } = req
 
   try {
-    const { name } = body
+    const { name, roomId } = body
     logger.info('got the following data', body)
 
     logger.info('creating new session') // need to create session and spotify instance
-    const room = 5 // need to change to created room id from session create
 
     req.user = {
       name,
-      room,
+      roomId,
       role: 'admin',
     }
 
