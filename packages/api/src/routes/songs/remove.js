@@ -31,7 +31,7 @@ module.exports = withSchema(schema, 'body')(async (req, res) => {
       },
     } = spotifyActions
 
-    removeFromPlaylist(playlistId, token, songUri)
+    await removeFromPlaylist(playlistId, token, songUri)
 
     logger.info('removed song uri from session', { songUri, roomId })
 
