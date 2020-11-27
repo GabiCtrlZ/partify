@@ -8,17 +8,17 @@ export default createMuiTheme({
   palette: {
     primary: {
       light: '#44a5e5',
-      main: '#3b9af7',
+      main: 'rgb(0, 176, 83)',
       dark: '#12a1ff',
     },
     secondary: {
       light: '#7bacd6',
-      main: '#3490de',
+      main: 'rgb(0, 176, 83)',
       dark: '#0a7ee0',
     },
     background: {
-      default: 'rgb(240,242,246)',
-      paper: '#fff',
+      default: '#212529',
+      paper: 'rgba(0, 0, 0, 0.7)',
     },
   },
   typography: {
@@ -104,7 +104,7 @@ export default createMuiTheme({
     },
   },
   measurements: {
-    headerHeight: 71,
+    headerHeight: 54,
     topMenuHeight: 60,
     intentListWidth: 380,
     entitiesListWidth: 300,

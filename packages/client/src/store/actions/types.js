@@ -3,7 +3,8 @@ const API = 'API'
 const appTypes = {
   backToState: 'BACK_TO_STATE',
   getData: 'GET_DATA',
-  toggleLoading: 'TOGGLE_LOADING',
+  setData: 'SET_DATA',
+  setSuggested: 'SET_SUGGESTED',
 }
 
 export {
