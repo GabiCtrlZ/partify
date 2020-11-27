@@ -3,6 +3,7 @@ import { handleActions } from 'redux-actions'
 import jwtDecode from 'jwt-decode'
 import Cookies from 'js-cookie'
 import { appTypes } from '../actions/types'
+import { COOKIE_NAME } from '../../consts'
 
 const initialState = Immutable({
   room: '',
@@ -15,19 +16,24 @@ const initialState = Immutable({
 export default handleActions({
   [appTypes.getData]: (state, { data: { songs } }) => state.set('songs', songs),
   [appTypes.setData]: (state, { data: { songs } }) => {
-    const token = Cookies.get('parify-app')
-    const decoded = jwtDecode(token)
-    const {
-      name,
-      role,
-      room,
-    } = decoded
+    try {
+      const token = Cookies.get(COOKIE_NAME)
+      const decoded = jwtDecode(token)
+      const {
+        name,
+        role,
+        room,
+      } = decoded
 
-    return state
-      .set('songs', songs)
-      .set('name', name)
-      .set('room', room)
-      .set('role', role)
+      return state
+        .set('songs', songs)
+        .set('name', name)
+        .set('room', room)
+        .set('role', role)
+    }
+    catch (e) {
+      return state
+    }
   },
   [appTypes.setSuggested]: (state, { data: { songs } }) => state.set('suggestedSongs', songs),
 }, initialState)
