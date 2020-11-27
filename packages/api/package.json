@@ -30,6 +30,7 @@
     "log4js": "^6.3.0",
     "mongoose": "^5.10.5",
     "pino": "^6.6.0",
-    "pino-pretty": "^4.2.1"
+    "pino-pretty": "^4.2.1",
+    "uuid": "^8.3.1"
   }
 }
