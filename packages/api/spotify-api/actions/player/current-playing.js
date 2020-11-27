@@ -1,6 +1,6 @@
 const axios = require('axios').default
 const { SPOTIFY_ACTIONS_API } = require('../../consts')
-const { bearer } = require('../../lib/getAuthHeader')
+const { bearer } = require('../../lib')
 
 module.exports = async (token, logger) => {
   const { data } = await axios({
@@ -15,7 +15,7 @@ module.exports = async (token, logger) => {
     item: { id: songId },
   } = data
 
-  logger.info(`currently played song id ${songId}`)
+  logger.info(`currently playing song with id ${songId}`)
 
   return songId
 }

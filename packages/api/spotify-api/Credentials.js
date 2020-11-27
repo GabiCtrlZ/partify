@@ -5,7 +5,6 @@ class Credentials {
     this._apiCallback = apiCallback || '/callback'
     this._clientCallback = clientCallback || '/'
     this._usersInAuthCycle = {}
-    this._activeUsers = {}
   }
 
   get scopes() {
@@ -38,32 +37,6 @@ class Credentials {
 
   isIdInAuthCycle = (id) => {
     return this._usersInAuthCycle[id]
-  }
-
-  setupNewActiveUser = (
-    id,
-    token,
-    refreshToken,
-    expiresIn
-  ) => {
-    this._activeUsers[id] = {
-      token,
-      refreshToken,
-      expiresIn,
-    }
-  }
-
-  initActiveUser = (id, spotifyId, name, image) => {
-    this._activeUsers[id] = {
-      ...this._activeUsers[id],
-      spotifyId,
-      name,
-      image,
-    }
-  }
-
-  setKeyInActiveUser = (id, key, value) => {
-    this._activeUsers[id][key] = value
   }
 }
 

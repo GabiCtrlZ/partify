@@ -11,7 +11,12 @@ module.exports = async (req, res, next) => {
 
     const session = await Session.findOne({ roomId, isAlive: true }).lean().exec()
 
-    if (!session) return logger.error(`Couldnt not find session for ${roomId}`)
+    if (!session) {
+      logger.error(`Couldnt not find session for ${roomId}`)
+      return res
+        .status(404)
+        .json({ success: false })
+    }
 
     req.session = session
 

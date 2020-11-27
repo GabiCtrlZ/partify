@@ -2,7 +2,7 @@
 const axios = require('axios').default
 const qs = require('querystring')
 const { SPOTIFY_ACCOUNTS_API } = require('../consts')
-const { basic } = require('../lib/getAuthHeader')
+const { basic } = require('../lib')
 const { userActions, playlistActions } = require('../actions')
 const { Session } = require('../../src/models')
 

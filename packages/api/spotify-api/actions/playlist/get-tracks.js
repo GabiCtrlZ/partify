@@ -1,7 +1,6 @@
 const axios = require('axios').default
 const { SPOTIFY_ACTIONS_API } = require('../../consts')
-const { bearer } = require('../../lib/getAuthHeader')
-const { refactorSongsRes } = require('../../lib')
+const { refactorSongsRes, bearer } = require('../../lib')
 const { currentlyPlaying } = require('../player')
 
 module.exports = async (

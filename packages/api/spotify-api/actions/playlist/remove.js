@@ -1,21 +1,14 @@
 const axios = require('axios').default
 const { SPOTIFY_ACTIONS_API } = require('../../consts')
-const { bearer } = require('../../lib/getAuthHeader')
-const refreshAuthToken = require('../../lib/refreshAuthToken')
+const { bearer } = require('../../lib')
 
-module.exports = async ({ activeUsers }, id, songUri) => {
-  const { playlistId, expiresIn } = activeUsers[id]
-
-  if (!expiresIn > new Date()) {
-    await refreshAuthToken(activeUsers, id)
-  }
-
+module.exports = async (playlistId, token, songUri) => {
   await axios({
     url: `${SPOTIFY_ACTIONS_API}/playlists/${playlistId}/tracks`,
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
-      ...bearer(id, activeUsers),
+      ...bearer(token),
     },
     data: {
       tracks: [{ uri: songUri }],

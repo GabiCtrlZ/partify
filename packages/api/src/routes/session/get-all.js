@@ -1,6 +1,6 @@
 const {
   spotifyActions: { playlistActions },
-} = require('../../../initSpotifyApi')
+} = require('../../lib/init-spotify-api')
 
 module.exports = async (req, res) => {
   const {

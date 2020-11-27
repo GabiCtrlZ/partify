@@ -1,17 +1,19 @@
 module.exports = ({ stopUserAuthCycle }) => (
   req,
   res,
-  next
+  next,
 ) => {
   const {
     query: { error, state },
     logger,
   } = req
-  
+
   if (error) {
     logger.warn(
-      `Got auth Error in callback route for id ${state} redirecting to authError`
+      `Got auth Error in callback route for id ${state} redirecting to authError`,
     )
+
+    stopUserAuthCycle(state)
 
     return res.redirect('/authError')
   }

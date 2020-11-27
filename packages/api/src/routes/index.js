@@ -2,7 +2,7 @@ const express = require('express')
 
 const session = require('./session')
 const songs = require('./songs')
-const { authRouter } = require('../../initSpotifyApi')
+const { authRouter } = require('../lib/init-spotify-api')
 
 const router = express.Router()
 

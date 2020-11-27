@@ -1,6 +1,7 @@
 const Joi = require('@hapi/joi')
-
 const withSchema = require('../../lib/with-schema')
+
+const { spotifyActions } = require('../../lib/init-spotify-api')
 
 const schema = Joi.object().keys({
   songUri: Joi.string().required(),
@@ -9,18 +10,28 @@ const schema = Joi.object().keys({
 module.exports = withSchema(schema, 'body')(async (req, res) => {
   const {
     logger,
-    user,
     body,
+    session,
   } = req
 
   try {
     const {
+      token,
+      playlistId,
       roomId,
-    } = user
+    } = session
 
     const {
       songUri,
     } = body
+
+    const {
+      playlistActions: {
+        removeFromPlaylist,
+      },
+    } = spotifyActions
+
+    removeFromPlaylist(playlistId, token, songUri)
 
     logger.info('removed song uri from session', { songUri, roomId })
 

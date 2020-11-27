@@ -3,5 +3,5 @@ const startUserAuthCycle = require('./startUserAuthCycle')
 
 module.exports = {
   checkForAuthError,
-  startUserAuthCycle
+  startUserAuthCycle,
 }

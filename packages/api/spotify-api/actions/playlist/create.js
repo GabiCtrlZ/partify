@@ -1,6 +1,6 @@
 const axios = require('axios').default
 const { SPOTIFY_ACTIONS_API } = require('../../consts')
-const { bearer } = require('../../lib/getAuthHeader')
+const { bearer } = require('../../lib')
 
 module.exports = async (
   roomId,
