@@ -8,6 +8,7 @@ import Loader from './Components/Loader'
 import { setEnqueueSnackbar } from './lib/snackbar'
 import MainRouter from './MainRouter'
 import { getData } from './store/actions/app'
+import Header from './Components/Header'
 
 const useStyles = makeStyles({
   app: {
@@ -45,6 +46,7 @@ function App(props) {
     <div className={classes.app}>
       <Switch>
         <Route path="/">
+          <Header />
           <div className={classes.content}>
             <MainRouter />
           </div>
