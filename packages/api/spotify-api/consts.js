@@ -1,11 +1,13 @@
 const {
   CLIENT_ID,
   CLIENT_SECRET,
+  SPOTIFY_ACCOUNTS_API,
+  SPOTIFY_ACTIONS_API,
 } = process.env
 
 module.exports = {
   CLIENT_ID,
   CLIENT_SECRET,
-  SPOTIFY_ACCOUNTS_API: 'https://accounts.spotify.com',
-  SPOTIFY_ACTIONS_API: 'https://api.spotify.com/v1',
+  SPOTIFY_ACCOUNTS_API,
+  SPOTIFY_ACTIONS_API,
 }
