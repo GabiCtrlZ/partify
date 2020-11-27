@@ -36,4 +36,7 @@ export default handleActions({
     }
   },
   [appTypes.setSuggested]: (state, { data: { songs } }) => state.set('suggestedSongs', songs),
+  [appTypes.addSong]: (state, { data }) => state.set('songs', [...state.songs, data]),
+  [appTypes.removeSong]: (state, { data }) => state.set('songs', state.songs.filter(({ uri }) => uri !== data)),
+  [appTypes.setSuggested]: (state, { data: { songs } }) => state.set('suggestedSongs', songs),
 }, initialState)

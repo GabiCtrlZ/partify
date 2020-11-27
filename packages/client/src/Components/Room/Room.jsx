@@ -6,6 +6,7 @@ import { Container } from '@material-ui/core'
 import SearchBar from '../Common/SearchBar'
 import Songs from './Songs'
 import Modal from './Modal'
+import { searchSongs } from '../../store/actions/app'
 
 const useStyles = makeStyles(({ palette }) => ({
   root: {
@@ -26,7 +27,7 @@ function Room(props) {
   const [focused, setFocused] = useState(false)
   const [action, setAction] = useState('remove')
   const [songData, setSongData] = useState(null)
-  const { songs, suggestedSongs } = props
+  const { songs, suggestedSongs, dispatch } = props
 
   const onClick = (data) => {
     if (focused) setAction('add')
@@ -41,7 +42,10 @@ function Room(props) {
         <Container className={classes.container}>
           <SearchBar
             value={value}
-            onChange={({ target: { value: val } }) => setValue(val)} // TODO send search on change
+            onChange={({ target: { value: val } }) => {
+              dispatch(searchSongs(val))
+              setValue(val)
+            }}
             onBlur={() => {
               setTimeout(() => {
                 setFocused(false)

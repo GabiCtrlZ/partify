@@ -10,7 +10,6 @@ module.exports = async (req, res) => {
 
   const {
     playlistId,
-    expiresIn,
     token,
   } = session
 
@@ -21,7 +20,6 @@ module.exports = async (req, res) => {
   try {
     const songs = await getTracksFromPlaylist(
       playlistId,
-      expiresIn,
       token,
       logger,
     )

@@ -101,7 +101,7 @@ function Songs(props) {
               key={uri}
               button
               onClick={() => onClick({
-                uri, name, artist, image,
+                uri, name, artist, image, album,
               })}
               className={classes.listItem}
             >

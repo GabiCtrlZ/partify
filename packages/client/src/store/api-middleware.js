@@ -31,19 +31,22 @@ export default () => (next) => async (action) => {
       baseURL: '/api/v1',
     })
 
-    if (!success) throw Error(`got success false with api to: ${requestConfig.url}`)
-    if (typeof onSuccess === 'function') {
-      return onSuccess(data)
+    if (!success) {
+      playSnackbar('Something went wrong..', { variant: 'error' })
+      throw Error(`got success false with api to: ${requestConfig.url}`)
     }
     if (actionName) {
       playSnackbar(`${actionName} successful`, { variant: 'success' })
+    }
+    if (typeof onSuccess === 'function') {
+      return onSuccess(data)
     }
   }
   catch (e) {
     if (typeof onError === 'function') {
       return onError(e)
     }
-    playSnackbar('Something goes wrong..', { variant: 'error' })
+    playSnackbar('Something went wrong..', { variant: 'error' })
     store.dispatch({ type: appTypes.backToState, state: stateBeforeAction })
   }
 }
