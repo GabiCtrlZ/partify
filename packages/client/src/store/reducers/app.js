@@ -10,11 +10,13 @@ const initialState = Immutable({
   name: 'Guest',
   role: 'user',
   songs: [],
+  fetchCompleted: false,
   suggestedSongs: [],
 })
 
 export default handleActions({
   [appTypes.getData]: (state, { data: { songs } }) => state.set('songs', songs),
+  [appTypes.fetchCompleted]: (state) => state.set('fetchCompleted', true),
   [appTypes.setData]: (state, { data: { songs } }) => {
     try {
       const token = Cookies.get(COOKIE_NAME)
@@ -30,12 +32,12 @@ export default handleActions({
         .set('name', name)
         .set('room', roomId)
         .set('role', role)
+        .set('fetchCompleted', true)
     }
     catch (e) {
       return state
     }
   },
-  [appTypes.setSuggested]: (state, { data: { songs } }) => state.set('suggestedSongs', songs),
   [appTypes.addSong]: (state, { data }) => state.set('songs', [...state.songs, data]),
   [appTypes.removeSong]: (state, { data }) => state.set('songs', state.songs.filter(({ uri }) => uri !== data)),
   [appTypes.setSuggested]: (state, { data: { songs } }) => state.set('suggestedSongs', songs),

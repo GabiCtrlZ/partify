@@ -6,11 +6,14 @@ import { Container } from '@material-ui/core'
 import SearchBar from '../Common/SearchBar'
 import Songs from './Songs'
 import Modal from './Modal'
-import { searchSongs } from '../../store/actions/app'
+import { searchSongs, pollSongs } from '../../store/actions/app'
+import useInterval from '../../lib/useInterval'
+import { POLLING_DELAY } from '../../consts'
 
 const useStyles = makeStyles(({ palette }) => ({
   root: {
     height: '100%',
+    overflow: 'auto',
     background: palette.background.default,
   },
   container: {
@@ -28,6 +31,10 @@ function Room(props) {
   const [action, setAction] = useState('remove')
   const [songData, setSongData] = useState(null)
   const { songs, suggestedSongs, dispatch } = props
+
+  useInterval(() => {
+    dispatch(pollSongs())
+  }, POLLING_DELAY)
 
   const onClick = (data) => {
     if (focused) setAction('add')

@@ -24,7 +24,7 @@ const Transition = React.forwardRef((props, ref) => <Slide direction="left" ref=
 
 export default function CreateModal(props) {
   const classes = useStyles()
-  const { open, handleClose, roomId } = props
+  const { open, handleClose, roomSecret } = props
 
   return (
     <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
@@ -35,7 +35,7 @@ export default function CreateModal(props) {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Create roomId={roomId} handleClose={handleClose} />
+      <Create roomSecret={roomSecret} handleClose={handleClose} />
     </Dialog>
   )
 }

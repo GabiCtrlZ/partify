@@ -9,6 +9,8 @@ const LANGS = {
   en: 'en',
 }
 
+const POLLING_DELAY = 5000
+
 const MAIN_TABS = {
   studentTable: 'studentTable',
   test: 'test',
@@ -59,6 +61,7 @@ export {
   COLORS,
   NODE_ENV,
   AUTH_URL,
+  POLLING_DELAY,
   COOKIE_NAME,
   GRAPH_RATIOS,
   MAIN_TABS,

@@ -1,5 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import CircleLoading from 'react-loadingg/lib/CircleLoading'
 import { connect } from 'react-redux'
 import WelcomeScreen from '../WelcomeScreen/WelcomeScreen'
 import Room from '../Room/Room'
@@ -16,7 +17,9 @@ const useStyles = makeStyles(() => ({
 
 function MainScreen(props) {
   const classes = useStyles(props)
-  const { room } = props
+  const { room, fetchCompleted } = props
+
+  if (!fetchCompleted) return <CircleLoading />
 
   return (
     <div className={classes.container}>
@@ -25,9 +28,9 @@ function MainScreen(props) {
   )
 }
 
-const mapStateToProps = ({ app: { songs, room } }) => ({
-  songs,
+const mapStateToProps = ({ app: { room, fetchCompleted } }) => ({
   room,
+  fetchCompleted,
 })
 
 export default connect(mapStateToProps)(MainScreen)

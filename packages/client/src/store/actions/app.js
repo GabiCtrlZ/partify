@@ -10,18 +10,33 @@ const getData = () => ({
       type: appTypes.setData,
       data,
     }),
+    onError: () => store.dispatch({
+      type: appTypes.fetchCompleted,
+    }),
+  },
+})
+
+const pollSongs = () => ({
+  type: API,
+  api: {
+    method: 'POST',
+    url: '/session/get-all',
+    onSuccess: (data) => store.dispatch({
+      type: appTypes.getData,
+      data,
+    }),
     onError: () => { },
   },
 })
 
-const createRoom = (name, roomId) => ({
+const createRoom = (name, roomSecret) => ({
   type: API,
   api: {
     method: 'POST',
     url: '/session/create',
     data: {
       name,
-      roomId,
+      roomSecret,
     },
     onSuccess: (data) => store.dispatch({
       type: appTypes.setData,
@@ -105,6 +120,7 @@ const removeSong = (songUri, cb) => ({
 export {
   createRoom,
   addSong,
+  pollSongs,
   removeSong,
   joinRoom,
   getData,

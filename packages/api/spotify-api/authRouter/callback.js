@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 const axios = require('axios').default
 const qs = require('querystring')
+const { v4 } = require('uuid')
 const { SPOTIFY_ACCOUNTS_API } = require('../consts')
 const { basic } = require('../lib')
 const { userActions, playlistActions } = require('../actions')
@@ -9,7 +10,6 @@ const { Session } = require('../../src/models')
 module.exports = ({
   apiCallback,
   clientCallback,
-  setupNewActiveUser,
   isIdInAuthCycle,
   stopUserAuthCycle,
 }) => async (req, res) => {
@@ -63,8 +63,11 @@ module.exports = ({
 
       logger.info(`creating and saving a new Session doc with roomId ${roomId}`)
 
+      const roomSecret = v4().split('-')[0]
+
       await new Session({
         roomId,
+        roomSecret,
         token: access_token,
         refreshToken: refresh_token,
         expiresIn: new Date(new Date().getTime() + expires_in * 1000),
@@ -77,7 +80,7 @@ module.exports = ({
 
       logger.info('finished auth cycle redirecting back to client')
 
-      return res.redirect(`${clientCallback}?success=true&roomId=${roomId}`)
+      return res.redirect(`${clientCallback}?success=true&roomSecret=${roomSecret}`)
     }
     logger.warn(`Got a state missmatch in callback route stopping user with id ${roomId} auth cycle`)
 

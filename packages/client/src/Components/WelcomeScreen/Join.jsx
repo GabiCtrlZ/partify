@@ -45,9 +45,9 @@ const useStyles = makeStyles((theme) => ({
 
 function Join(props) {
   const classes = useStyles()
-  const { handleClose, dispatch } = props
+  const { handleClose, roomId, dispatch } = props
   const [name, setName] = useState('')
-  const [room, setRoom] = useState('')
+  const [room, setRoom] = useState(roomId || '')
 
   return (
     <Container component="main" maxWidth="xs">
@@ -61,6 +61,7 @@ function Join(props) {
         </Typography>
         <TextField
           onChange={({ target: { value } }) => setName(value)}
+          value={name}
           className={classes.textField}
           variant="outlined"
           margin="normal"
@@ -74,6 +75,7 @@ function Join(props) {
         />
         <TextField
           onChange={({ target: { value } }) => setRoom(value)}
+          value={room}
           className={classes.textField}
           variant="outlined"
           margin="normal"

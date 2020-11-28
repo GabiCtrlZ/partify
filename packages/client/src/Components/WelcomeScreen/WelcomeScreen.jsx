@@ -33,6 +33,7 @@ const useStyles = makeStyles(() => ({
 }), { name: 'WelcomeScreen' })
 
 let roomId
+let roomSecret
 
 try {
   // eslint-disable-next-line prefer-destructuring
@@ -42,10 +43,18 @@ catch (e) {
   roomId = null
 }
 
+try {
+  // eslint-disable-next-line prefer-destructuring
+  roomSecret = window.location.search.match(/roomSecret=[0-9a-zA-Z]+/g)[0].split('=')[1]
+}
+catch (e) {
+  roomSecret = null
+}
+
 function WelcomeScreen(props) {
   const classes = useStyles(props)
-  const [openCreate, setOpenCreate] = useState(!!roomId)
-  const [openJoin, setOpenJoin] = useState(false)
+  const [openCreate, setOpenCreate] = useState(!!roomSecret)
+  const [openJoin, setOpenJoin] = useState(!!roomId)
 
   return (
     <>
@@ -60,8 +69,8 @@ function WelcomeScreen(props) {
           </Paper>
         )}
       </div>
-      <CreateModal open={openCreate} roomId={roomId} handleClose={() => setOpenCreate(false)} />
-      <JoinModal open={openJoin} handleClose={() => setOpenJoin(false)} />
+      <CreateModal open={openCreate} roomSecret={roomSecret} handleClose={() => setOpenCreate(false)} />
+      <JoinModal open={openJoin} roomId={roomId} handleClose={() => setOpenJoin(false)} />
     </>
   )
 }

@@ -48,13 +48,13 @@ const useStyles = makeStyles((theme) => ({
 
 function Create(props) {
   const classes = useStyles()
-  const { handleClose, roomId, dispatch } = props
+  const { handleClose, roomSecret, dispatch } = props
   const [name, setName] = useState('')
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      {!!roomId && (
+      {!!roomSecret && (
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
@@ -62,6 +62,9 @@ function Create(props) {
           <Typography component="h1" variant="h5">
             Create Room
           </Typography>
+          <div>
+            {`Your room secret is: ${roomSecret} Please keep it safe`}
+          </div>
           <TextField
             className={classes.textField}
             onChange={({ target: { value } }) => setName(value)}
@@ -82,7 +85,7 @@ function Create(props) {
             color="primary"
             className={classes.submit}
             onClick={() => {
-              dispatch(createRoom(name, roomId))
+              dispatch(createRoom(name, roomSecret))
               handleClose()
             }}
           >
@@ -90,7 +93,7 @@ function Create(props) {
           </Button>
         </div>
       )}
-      {!roomId && (
+      {!roomSecret && (
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />

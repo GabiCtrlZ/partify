@@ -1,10 +1,11 @@
 /* eslint-disable consistent-return */
 const Joi = require('@hapi/joi')
+const { Session } = require('../models')
 const withSchema = require('../lib/with-schema')
 
 const schema = Joi.object().keys({
   name: Joi.string().required(),
-  roomId: Joi.string().required(),
+  roomSecret: Joi.string().required(),
 })
 
 module.exports = withSchema(schema, 'body')(async (req, res, next) => {
@@ -14,8 +15,10 @@ module.exports = withSchema(schema, 'body')(async (req, res, next) => {
   } = req
 
   try {
-    const { name, roomId } = body
+    const { name, roomSecret } = body
     logger.info('got the following data', body)
+
+    const { roomId } = await Session.findOne({ roomSecret, isAlive: true }).lean().exec()
 
     logger.info('creating new session') // need to create session and spotify instance
 

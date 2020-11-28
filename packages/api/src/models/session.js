@@ -2,6 +2,7 @@ const { model, Schema } = require('mongoose')
 
 const sessionSchema = new Schema({
   roomId: String,
+  roomSecret: { type: String, unique: true },
   token: String,
   refreshToken: String,
   expiresIn: Date,

@@ -2,10 +2,15 @@ import React, { useState } from 'react'
 import { fade, makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Button from '@material-ui/core/Button'
+import copy from 'copy-to-clipboard'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
+import FileCopyIcon from '@material-ui/icons/FileCopy'
+import { IconButton } from '@material-ui/core'
 import { connect } from 'react-redux'
 import Typography from '@material-ui/core/Typography'
+import { get } from 'lodash'
+import { playSnackbar } from '../lib/snackbar'
 // import Logo from '../assets/Icons/Logo'
 
 const useStyles = makeStyles((theme) => ({
@@ -59,6 +64,11 @@ function Header(props) {
 
   const handleClose = () => setAnchorEl(null)
 
+  const copyRoomLink = () => {
+    copy(`${get(window.location.href.split('?'), '0', 'defultRoute')}?roomId=${room}`)
+    playSnackbar('Copied room link to clipboard!', { variant: 'success' })
+  }
+
   return (
     <AppBar
       color="primary"
@@ -89,12 +99,20 @@ function Header(props) {
             >
               <MenuItem
                 className={classes.menuItem}
-                disabled
+                onClick={copyRoomLink}
               >
                 <div>
                   <div style={{ fontSize: 11 }}>Room Code</div>
                   <Typography color="secondary">{room || 'No room'}</Typography>
                 </div>
+                {room && (
+                  <IconButton
+                    className={classes.menuItem}
+                    aria-label="copy"
+                  >
+                    <FileCopyIcon />
+                  </IconButton>
+                )}
               </MenuItem>
               {room && (
                 <MenuItem

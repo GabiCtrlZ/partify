@@ -7,6 +7,7 @@ const appTypes = {
   addSong: 'ADD_SONG',
   removeSong: 'REMOVE_SONG',
   setSuggested: 'SET_SUGGESTED',
+  fetchCompleted: 'FETCH_COMPLETED',
 }
 
 export {

@@ -24,7 +24,7 @@ const Transition = React.forwardRef((props, ref) => <Slide direction="left" ref=
 
 export default function JoinModal(props) {
   const classes = useStyles()
-  const { open, handleClose } = props
+  const { open, handleClose, roomId } = props
 
   return (
     <Dialog className={classes.dialog} fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
@@ -35,7 +35,7 @@ export default function JoinModal(props) {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Join handleClose={handleClose} />
+      <Join roomId={roomId} handleClose={handleClose} />
     </Dialog>
   )
 }
