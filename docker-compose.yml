@@ -28,7 +28,7 @@ services:
       - 443:8443
     volumes:
       - ./nginx.conf:/opt/bitnami/nginx/conf/server_blocks/my_server_block.conf:ro
-      - ./sert:/opt/sert
+      - ./certs:/certs
 
 volumes:
   mongodb_data:

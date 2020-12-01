@@ -8,4 +8,4 @@ newrelic_agent.log
 .serverless
 .vscode
 __pycache__
-sert
+certs
