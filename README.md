@@ -16,27 +16,27 @@ You can create a room connected straight to your spotify and every one how joins
 
 Welcome page:
 
-<img src="https://raw.githubusercontent.com/GabiCtrlZ/partify/master/src/readme-pics/welcome.jpeg" alt="MainScreen" height="550"  />
+<img src="https://raw.githubusercontent.com/GabiCtrlZ/partify/master/readme-pics/welcome.jpeg" alt="MainScreen" height="550"  />
 
 
 Create a room using your spotify account
 
-<img src="https://raw.githubusercontent.com/GabiCtrlZ/partify/master/src/readme-pics/create.jpeg" alt="search" height="550" />
+<img src="https://raw.githubusercontent.com/GabiCtrlZ/partify/master/readme-pics/create.jpeg" alt="search" height="550" />
 
 Or join an existing room via room link or room code
-<img src="https://raw.githubusercontent.com/GabiCtrlZ/partify/master/src/readme-pics/join.jpeg" alt="search" height="550" />
+<img src="https://raw.githubusercontent.com/GabiCtrlZ/partify/master/readme-pics/join.jpeg" alt="search" height="550" />
 
 
 Search for your favorite songs
 
-<img src="https://raw.githubusercontent.com/GabiCtrlZ/partify/master/src/readme-pics/search.jpeg" alt="examples"
+<img src="https://raw.githubusercontent.com/GabiCtrlZ/partify/master/readme-pics/search.jpeg" alt="examples"
 	height="550" />
 
 And add the songs to your playlist!
 
-<img src="https://raw.githubusercontent.com/GabiCtrlZ/partify/master/src/readme-pics/add-song.jpeg" alt="ac-examples"
+<img src="https://raw.githubusercontent.com/GabiCtrlZ/partify/master/readme-pics/add-song.jpeg" alt="ac-examples"
 	width="750" height="520" />
 
 Enjoy your common playlist!
 
-<img src="https://raw.githubusercontent.com/GabiCtrlZ/partify/master/src/readme-pics/playlist.jpeg" alt="enjoy"/>
+<img src="https://raw.githubusercontent.com/GabiCtrlZ/partify/master/readme-pics/playlist.jpeg" alt="enjoy"/>
