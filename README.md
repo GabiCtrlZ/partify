@@ -24,19 +24,18 @@ Create a room using your spotify account
 <img src="https://raw.githubusercontent.com/GabiCtrlZ/partify/master/readme-pics/create.jpeg" alt="search" height="550" />
 
 Or join an existing room via room link or room code
+
 <img src="https://raw.githubusercontent.com/GabiCtrlZ/partify/master/readme-pics/join.jpeg" alt="search" height="550" />
 
 
 Search for your favorite songs
 
-<img src="https://raw.githubusercontent.com/GabiCtrlZ/partify/master/readme-pics/search.jpeg" alt="examples"
-	height="550" />
+<img src="https://raw.githubusercontent.com/GabiCtrlZ/partify/master/readme-pics/search.jpeg" alt="examples" height="550" />
 
 And add the songs to your playlist!
 
-<img src="https://raw.githubusercontent.com/GabiCtrlZ/partify/master/readme-pics/add-song.jpeg" alt="ac-examples"
-	width="750" height="520" />
+<img src="https://raw.githubusercontent.com/GabiCtrlZ/partify/master/readme-pics/add-song.jpeg" alt="ac-examples" height="550" />
 
 Enjoy your common playlist!
 
-<img src="https://raw.githubusercontent.com/GabiCtrlZ/partify/master/readme-pics/playlist.jpeg" alt="enjoy"/>
+<img src="https://raw.githubusercontent.com/GabiCtrlZ/partify/master/readme-pics/playlist.jpeg" alt="enjoy" height="550" />
