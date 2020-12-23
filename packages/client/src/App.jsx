@@ -36,7 +36,7 @@ function App(props) {
       dispatch(getData())
     }
     fun()
-  }, [])
+  })
 
   useEffect(() => {
     setEnqueueSnackbar(enqueueSnackbar)
