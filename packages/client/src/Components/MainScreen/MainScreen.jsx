@@ -6,8 +6,6 @@ import WelcomeScreen from '../WelcomeScreen/WelcomeScreen'
 import Room from '../Room/Room'
 import backgroundImg from '../../assets/background.webp'
 
-import CurrelyPlaying from '../Room/CurrentlyPlaying'
-
 const useStyles = makeStyles(
   () => ({
     container: {
@@ -28,14 +26,7 @@ function MainScreen(props) {
 
   return (
     <div className={classes.container}>
-      {!room ? (
-        <WelcomeScreen />
-      ) : (
-        <>
-          <Room />
-          {/* <CurrelyPlaying /> */}
-        </>
-      )}
+      {!room ? <WelcomeScreen /> : <Room />}
     </div>
   )
 }

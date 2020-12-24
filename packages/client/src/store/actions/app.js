@@ -117,6 +117,10 @@ const removeSong = (songUri, cb) => ({
   },
 })
 
+const leave = () => ({
+  type: appTypes.leave,
+})
+
 export {
   createRoom,
   addSong,
@@ -125,4 +129,5 @@ export {
   joinRoom,
   getData,
   searchSongs,
+  leave,
 }

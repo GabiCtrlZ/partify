@@ -43,4 +43,15 @@ export default handleActions({
   [appTypes.addSong]: (state, { data }) => state.set('songs', [...state.songs, data]),
   [appTypes.removeSong]: (state, { data }) => state.set('songs', state.songs.filter(({ uri }) => uri !== data)),
   [appTypes.setSuggested]: (state, { data: { songs } }) => state.set('suggestedSongs', songs),
+  [appTypes.leave]: (state, payload) => { 
+    Cookies.remove(COOKIE_NAME) 
+    
+    return state
+      .set('room', '')
+      .set('name', 'Guest')
+      .set('role', 'user')
+      .set('songs', [])
+      .set('currentlyPlayingSong', {})
+      .set('suggestedSongs', [])
+  },
 }, initialState)

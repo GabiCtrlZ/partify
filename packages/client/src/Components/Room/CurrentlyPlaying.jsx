@@ -104,7 +104,6 @@ const useStyles = makeStyles((theme) => ({
 function CurrentlyPlaying({ currentlyPlayingSong }) {
   const [open, setOpen] = useState(false)
   const classes = useStyles()
-  console.log(currentlyPlayingSong)
 
   const {
     artist = 'No Track',

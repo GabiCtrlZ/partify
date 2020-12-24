@@ -22,7 +22,7 @@ const useStyles = makeStyles(
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      paddingBottom: theme.measurements.playingClosedDrawerHight
+      paddingBottom: theme.measurements.playingClosedDrawerHight,
     },
   }),
   { name: 'Room' }
@@ -37,9 +37,9 @@ function Room(props) {
   const [songData, setSongData] = useState(null)
   const { songs, suggestedSongs, dispatch } = props
 
-  // useInterval(() => {
-  //   dispatch(pollSongs())
-  // }, POLLING_DELAY)
+  useInterval(() => {
+    dispatch(pollSongs())
+  }, POLLING_DELAY)
 
   const onClick = (data) => {
     if (focused) setAction('add')
