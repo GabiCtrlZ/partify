@@ -4,24 +4,29 @@ import { connect } from 'react-redux'
 import { Container } from '@material-ui/core'
 
 import SearchBar from '../Common/SearchBar'
+import CurrelyPlaying from './CurrentlyPlaying'
 import Songs from './Songs'
 import Modal from './Modal'
 import { searchSongs, pollSongs } from '../../store/actions/app'
 import useInterval from '../../lib/useInterval'
 import { POLLING_DELAY } from '../../consts'
 
-const useStyles = makeStyles(({ palette }) => ({
-  root: {
-    height: '100%',
-    overflow: 'auto',
-    background: palette.background.default,
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-}), { name: 'Room' })
+const useStyles = makeStyles(
+  (theme) => ({
+    root: {
+      height: '100%',
+      overflow: 'auto',
+      background: theme.palette.background.default,
+    },
+    container: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      paddingBottom: theme.measurements.playingClosedDrawerHight
+    },
+  }),
+  { name: 'Room' }
+)
 
 function Room(props) {
   const classes = useStyles(props)
@@ -32,9 +37,9 @@ function Room(props) {
   const [songData, setSongData] = useState(null)
   const { songs, suggestedSongs, dispatch } = props
 
-  useInterval(() => {
-    dispatch(pollSongs())
-  }, POLLING_DELAY)
+  // useInterval(() => {
+  //   dispatch(pollSongs())
+  // }, POLLING_DELAY)
 
   const onClick = (data) => {
     if (focused) setAction('add')
@@ -62,14 +67,25 @@ function Room(props) {
           />
           <Songs songs={focused ? suggestedSongs : songs} onClick={onClick} />
         </Container>
+        <CurrelyPlaying />
       </div>
-      {songData && <Modal open={open} handleClose={() => setOpen(false)} action={action} songData={songData} />}
+      {songData && (
+        <Modal
+          open={open}
+          handleClose={() => setOpen(false)}
+          action={action}
+          songData={songData}
+        />
+      )}
     </>
   )
 }
 
-const mapStateToProps = ({ app: { songs, suggestedSongs, room } }) => ({
+const mapStateToProps = ({
+  app: { songs, currelyPlayingSong, suggestedSongs, room },
+}) => ({
   songs,
+  currelyPlayingSong,
   suggestedSongs,
   room,
 })

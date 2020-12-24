@@ -10,6 +10,7 @@ const initialState = Immutable({
   name: 'Guest',
   role: 'user',
   songs: [],
+  currentlyPlayingSong: {},
   fetchCompleted: false,
   suggestedSongs: [],
 })
@@ -29,6 +30,7 @@ export default handleActions({
 
       return state
         .set('songs', songs)
+        .set('currentlyPlayingSong', songs.find(song => song.playing))
         .set('name', name)
         .set('room', roomId)
         .set('role', role)
