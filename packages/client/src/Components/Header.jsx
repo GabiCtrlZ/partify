@@ -126,10 +126,7 @@ function Header(props) {
                   </a>
                   <MenuItem
                     className={classes.menuItem}
-                    onClick={() => {
-                      dispatch(leave())
-                      window.location.href = window.location.origin
-                    }}
+                    onClick={() => dispatch(leave())}
                   >
                     Leave
                   </MenuItem>

@@ -48,6 +48,6 @@ export default handleActions({
   [appTypes.leave]: () => {
     Cookies.remove(COOKIE_NAME)
 
-    return initialState
+    return initialState.set('fetchCompleted', true)
   },
 }, initialState)
