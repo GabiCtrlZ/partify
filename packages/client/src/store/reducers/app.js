@@ -16,7 +16,7 @@ const initialState = Immutable({
 })
 
 export default handleActions({
-  [appTypes.getData]: (state, { data: { songs } }) => state.set('songs', songs),
+  [appTypes.getData]: (state, { data: { songs } }) => state.set('songs', songs).set('currentlyPlayingSong', songs.find(song => song.playing)),
   [appTypes.fetchCompleted]: (state) => state.set('fetchCompleted', true),
   [appTypes.setData]: (state, { data: { songs } }) => {
     try {
