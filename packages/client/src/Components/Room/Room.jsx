@@ -80,8 +80,8 @@ function Room(props) {
 
 const mapStateToProps = ({
   app: {
-     songs, currelyPlayingSong, suggestedSongs, room,
-     },
+    songs, currelyPlayingSong, suggestedSongs, room,
+  },
 }) => ({
   songs,
   currelyPlayingSong,
