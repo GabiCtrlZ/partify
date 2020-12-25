@@ -11,22 +11,19 @@ import { searchSongs, pollSongs } from '../../store/actions/app'
 import useInterval from '../../lib/useInterval'
 import { POLLING_DELAY } from '../../consts'
 
-const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      height: '100%',
-      overflow: 'auto',
-      background: theme.palette.background.default,
-    },
-    container: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      paddingBottom: theme.measurements.playingClosedDrawerHight,
-    },
-  }),
-  { name: 'Room' }
-)
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: '100%',
+    overflow: 'auto',
+    background: theme.palette.background.default,
+  },
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    paddingBottom: theme.measurements.playingClosedDrawerHight,
+  },
+}), { name: 'Room' })
 
 function Room(props) {
   const classes = useStyles(props)
@@ -82,7 +79,9 @@ function Room(props) {
 }
 
 const mapStateToProps = ({
-  app: { songs, currelyPlayingSong, suggestedSongs, room },
+  app: {
+     songs, currelyPlayingSong, suggestedSongs, room,
+     },
 }) => ({
   songs,
   currelyPlayingSong,

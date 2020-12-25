@@ -13,50 +13,46 @@ import { get } from 'lodash'
 import { playSnackbar } from '../lib/snackbar'
 import { leave } from '../store/actions/app'
 
-const useStyles = makeStyles(
-  (theme) => ({
-    appBar: {
-      height: theme.measurements.headerHeight,
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      padding: theme.spacing(2),
-      background: 'black',
-      zIndex: 3,
-      border: 0,
+const useStyles = makeStyles((theme) => ({
+  appBar: {
+    height: theme.measurements.headerHeight,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: theme.spacing(2),
+    background: 'black',
+    zIndex: 3,
+    border: 0,
+  },
+  menuItem: {
+    color: 'white',
+  },
+  accountIcon: {
+    color: 'white',
+    borderColor: fade('#FFF', 0.5),
+    padding: `${theme.spacing(0.5)}px ${theme.spacing(2)}px`,
+    borderRadius: 8,
+    textTransform: 'none',
+  },
+  menu: {
+    background: 'rgba(0, 0, 0, 1)',
+  },
+  logoContainer: {
+    display: 'flex',
+    color: 'white',
+    fontWeight: 'bold',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    userSelect: 'none',
+    '& > div': {
+      letterSpacing: '1.5px',
+      fontSize: 20,
     },
-    menuItem: {
-      color: 'white',
-    },
-    accountIcon: {
-      color: 'white',
-      borderColor: fade('#FFF', 0.5),
-      padding: `${theme.spacing(0.5)}px ${theme.spacing(2)}px`,
-      borderRadius: 8,
-      textTransform: 'none',
-    },
-    menu: {
-      background: 'rgba(0, 0, 0, 1)',
-    },
-    logoContainer: {
-      display: 'flex',
-      color: 'white',
-      fontWeight: 'bold',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'flex-start',
-      userSelect: 'none',
-      '& > div': {
-        letterSpacing: '1.5px',
-        fontSize: 20,
-      },
-    },
-  }),
-  { name: 'Header' }
-)
+  },
+}), { name: 'Header' })
 
-const getCurrentPath = () =>
-  get(window.location.href.split('?'), '0', 'defultRoute')
+const getCurrentPath = () => get(window.location.href.split('?'), '0', 'defultRoute')
 
 function Header(props) {
   const classes = useStyles(props)
@@ -78,9 +74,9 @@ function Header(props) {
 
   return (
     <AppBar
-      color='primary'
-      variant='outlined'
-      position='static'
+      color="primary"
+      variant="outlined"
+      position="static"
       classes={{ root: classes.appBar }}
     >
       <div className={classes.logoContainer}>
@@ -91,7 +87,7 @@ function Header(props) {
           <Button
             classes={{ root: classes.accountIcon }}
             onClick={({ currentTarget }) => setAnchorEl(currentTarget)}
-            variant='outlined'
+            variant="outlined"
           >
             {name}
           </Button>
@@ -104,10 +100,10 @@ function Header(props) {
               <MenuItem className={classes.menuItem} onClick={copyRoomLink}>
                 <div>
                   <div style={{ fontSize: 11 }}>Room Code</div>
-                  <Typography color='secondary'>{room || 'No room'}</Typography>
+                  <Typography color="secondary">{room || 'No room'}</Typography>
                 </div>
                 {room && (
-                  <IconButton className={classes.menuItem} aria-label='copy'>
+                  <IconButton className={classes.menuItem} aria-label="copy">
                     <FileCopy />
                   </IconButton>
                 )}
@@ -122,7 +118,7 @@ function Header(props) {
                       Share to WhatsApp
                       <IconButton
                         className={classes.menuItem}
-                        aria-label='copy'
+                        aria-label="copy"
                       >
                         <WhatsApp />
                       </IconButton>

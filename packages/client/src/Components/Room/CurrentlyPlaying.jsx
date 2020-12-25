@@ -99,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
     left: 15,
     top: 10,
   },
-}))
+}), { name: 'CurrentlyPlaying' })
 
 function CurrentlyPlaying({ currentlyPlayingSong }) {
   const [open, setOpen] = useState(false)
@@ -113,9 +113,9 @@ function CurrentlyPlaying({ currentlyPlayingSong }) {
 
   return (
     <Drawer
-      variant='permanent'
+      variant="permanent"
       open={open}
-      anchor='bottom'
+      anchor="bottom"
       className={cn(classes.drawer, {
         [classes.drawerOpen]: open,
         [classes.drawerClose]: !open,
@@ -143,15 +143,15 @@ function CurrentlyPlaying({ currentlyPlayingSong }) {
           [classes.smallSongImage]: !open,
         })}
       >
-        <img className={classes.imageStyles} src={image} />
+        <img alt="songImg" className={classes.imageStyles} src={image} />
       </Paper>
 
       <Typography
-        variant='body2'
+        variant="body2"
         className={cn(classes.mainText, { [classes.mainTextLarge]: open })}
       >
         {name}
-        <Typography variant='caption' className={classes.captionText}>
+        <Typography variant="caption" className={classes.captionText}>
           {artist}
         </Typography>
       </Typography>

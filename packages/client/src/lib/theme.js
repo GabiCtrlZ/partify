@@ -1,4 +1,4 @@
-import { createMuiTheme, ThemeProvider } from '@material-ui/core'
+import { createMuiTheme } from '@material-ui/core'
 import MuliRegulrar from '../assets/fonts/Muli-Regular.ttf'
 import MuliBold from '../assets/fonts/Muli-Bold.ttf'
 import ArimoHeRegulrar from '../assets/fonts/Arimo-Regular.ttf'

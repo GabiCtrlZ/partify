@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "lint-api": "cd ./packages/api && npm run lint",
-    "lint": "concurrently \"npm run lint-api\"",
+    "lint-client": "cd ./packages/client && npm run lint",
+    "lint": "concurrently \"npm run lint-api\" \"npm run lint-client\"",
     "start-api": "cd ./packages/api && npm run dev",
     "start-api-server": "cd ./packages/api && npm start",
     "start-client": "cd ./packages/client && npm start",
@@ -15,7 +16,12 @@
     "install-all": "concurrently \"npm run install-client\" \"npm run install-api\"",
     "build-client": "cd ./packages/client && npm run build"
   },
-  "author": "",
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint"
+    }
+  },
+  "author": "Gabi Balko",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0",
