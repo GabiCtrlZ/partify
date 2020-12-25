@@ -1,4 +1,4 @@
-import { createMuiTheme } from '@material-ui/core'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core'
 import MuliRegulrar from '../assets/fonts/Muli-Regular.ttf'
 import MuliBold from '../assets/fonts/Muli-Bold.ttf'
 import ArimoHeRegulrar from '../assets/fonts/Arimo-Regular.ttf'
@@ -44,7 +44,8 @@ export default createMuiTheme({
         '*': {
           outline: 'none',
         },
-        '#gtx-trans': { // hide google translate widget on text selection
+        '#gtx-trans': {
+          // hide google translate widget on text selection
           display: 'none',
         },
         '@font-face': [
@@ -111,6 +112,6 @@ export default createMuiTheme({
     cardSize: 190,
     cardSizeHeight: 125,
     tagEditorMaxWidth: 1200,
+    playingClosedDrawerHight: 75,
   },
-
 })
