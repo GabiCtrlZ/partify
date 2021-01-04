@@ -53,6 +53,9 @@ const COOKIE_OPTIONS = {
   httpOnly: false,
 }
 
+const LRU_MAX_SIZE = 10
+const POOLING_DELAY = 5000
+
 module.exports = {
   PORT,
   COOKIE_NAME,
@@ -69,4 +72,6 @@ module.exports = {
   SERVICE_NAME: `${packagejson.name}:${packagejson.version}`,
   API_CALLBACK,
   CLIENT_CALLBACK,
+  LRU_MAX_SIZE,
+  POOLING_DELAY,
 }
